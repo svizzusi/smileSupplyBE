@@ -19,7 +19,6 @@ const ProductSchema = new mongoose.Schema({
     },
     frequency: {
         type: String,
-        required: true,
     },
     savedProducts: {
         type: mongoose.Schema.Types.ObjectId,

@@ -20,9 +20,10 @@ const ProductSchema = new mongoose.Schema({
     frequency: {
         type: String,
     },
-    savedProducts: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        required: true,
     }
 })
 

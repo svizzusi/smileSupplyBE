@@ -48,6 +48,18 @@ module.exports = {
         })
     },
 
+    orderProduct: (req, res) => {
+        const id = req.params.id // Extract the ID parameter from the request
+        productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
+            order: req.body.order
+        }) 
+        .then(Product => res.json(Product)) // Convert data to JSON and send response
+        .catch(err => {
+            res.json(err)
+            console.log(err)
+        })
+    },
+
     deleteProduct: (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
         productSchema.findByIdAndDelete(id) // Find and Delete data by its ID

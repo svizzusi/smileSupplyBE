@@ -11,15 +11,15 @@ const ProductSchema = new mongoose.Schema({
         required: true,
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
     quantity: {
-        type: String,
+        type: Number,
         required: true,
     },
     frequency: {
-        type: String,
+        type: Number,
     },
     order: {
         type: Boolean,

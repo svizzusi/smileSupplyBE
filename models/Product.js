@@ -21,6 +21,9 @@ const ProductSchema = new mongoose.Schema({
     frequency: {
         type: Number,
     },
+    originalFrequency: {
+        type: Number,
+    },
     order: {
         type: Boolean,
     },

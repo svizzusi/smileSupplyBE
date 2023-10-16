@@ -65,7 +65,7 @@ module.exports = {
         
         try {
         // Find the product by ID
-        const product = await ProductSchema.findById(id);
+        const product = await productSchema.findById(id);
         
         if (!product) {
         return res.status(404).json({ error: 'Product not found' });

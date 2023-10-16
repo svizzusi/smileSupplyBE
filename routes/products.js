@@ -12,11 +12,14 @@ router.get('/getProducts/:id', productsController.getProducts)
 // Express route to the root route for fetching users products by the product id
 router.get('/getProduct/:id', productsController.getProduct)
 
-// Express route for updating a task by its ID(From MongoDB)
+// Express route for updating a product by its ID(From MongoDB)
 router.put('/updateProduct/:id', productsController.updateProduct)
 
 // Route for updating a product to order form
 router.put('/orderProduct/:id', productsController.orderProduct);
+
+// Route for resetting the frequency of a product back to it's original frequency
+router.put('/resetFrequency/:id', productsController.resetFrequency);
 
 // Express route for deleting a product by its ID(From MongoDB)
 router.delete('/deleteProduct/:id', productsController.deleteProduct)

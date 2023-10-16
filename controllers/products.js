@@ -60,18 +60,32 @@ module.exports = {
         })
     },
 
-    resetFrequency: (req, res) => {
-        const id = req.params.id // Extract the ID parameter from the request
-        productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
-            order: false,
-            frequency: productSchema.originalFrequency
-        }) 
-        .then(Product => res.json(Product)) // Convert data to JSON and send response
-        .catch(err => {
-            res.json(err)
-            console.log(err)
-        })
-    },
+    resetFrequency: async (req, res) => {
+        const id = req.params.id;
+        
+        try {
+        // Find the product by ID
+        const product = await ProductSchema.findById(id);
+        
+        if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+        }
+        
+        // Set the 'frequency' to the 'originalFrequency' value from the schema
+        product.frequency = product.originalFrequency;
+        
+        // Set 'order' to false, if needed
+        product.order = false;
+        
+        // Save the updated product
+        const updatedProduct = await product.save();
+        
+        res.json(updatedProduct);
+        } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error updating product' });
+        }
+        },
 
     deleteProduct: (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request

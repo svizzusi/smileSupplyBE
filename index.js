@@ -1,10 +1,11 @@
+const passportSetup = require('./passportStrategy/passport')
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const userModel = require('./models/User');
-const dotenv = require('dotenv'); // Require dotenv at the top
-
-dotenv.config({ path: './config/.env' });
+require('dotenv').config({ path: './config/.env' });
+const passport = require('passport');
+const session = require('express-session');
 
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
@@ -12,13 +13,33 @@ const productRoutes = require('./routes/products');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:5173, https://www.smilesupply.net/'); // Update with your frontend URL
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+app.use(session({
+  secret: 'smailesupply',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(cors({
+  origin: [
+    'http://localhost:5174',
+    'https://smilesupply.net'
+  ],
+  methods: [
+    'GET',
+    'PUT',
+    'POST',
+    'DELETE',
+    'PATCH'
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Define a function to connect to the database

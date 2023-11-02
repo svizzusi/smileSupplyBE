@@ -13,6 +13,7 @@ const productRoutes = require('./routes/products');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
 app.use(session({
   secret: 'smailesupply',
   resave: false,
@@ -24,12 +25,19 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+const allowedOrigins = [
+  'http://localhost:5174',
+  'https://smilesupply.net'
+]
 
 app.use(cors({
-  origin: [
-    'http://localhost:5174',
-    'https://smilesupply.net'
-  ],
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Origin is not specified'))
+    }
+  },
   methods: [
     'GET',
     'PUT',

@@ -18,7 +18,7 @@ passport.use(new GoogleStrategy({
   }
 )); 
 passport.serializeUser( (user, done) => {
-    done(null, user)
+    done(null, user.id) //added .id
 })
 passport.deserializeUser( (user, done) => {
     done(null, user)

@@ -9,13 +9,14 @@ const session = require('express-session');
 
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 
 app.use(session({
-  secret: 'smailesupply',
+  secret: 'smilesupply',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -27,7 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 const allowedOrigins = [
   'http://localhost:5174',
-  'https://smilesupply.net'
+  'https://smilesupply.net',
 ]
 
 app.use(cors({
@@ -80,6 +81,7 @@ connectDB();
 // Use your routes here
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/auth', authRoutes);
 
 // Global error handler middleware
 app.use((err, req, res, next) => {

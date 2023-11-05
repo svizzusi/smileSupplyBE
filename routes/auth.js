@@ -45,3 +45,7 @@ router.get("/google/callback", passport.authenticate("google", {
 successRedirect: CLIENT_URL,
 failureRedirect: "/login/failed"
 }));
+
+
+const authRouter = router;
+module.exports = authRouter; // Export the authRouter for use in other parts of the application

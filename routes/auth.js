@@ -6,8 +6,8 @@ const router = express.Router(); // Create an Express router
 const CLIENT_URL = 'https://smilesupply.net/dashboard'
 const LOGOUT_URL = 'https://www.smilesupply.net'
 router.get('/login/failed', (req, res) => {
-  console.log('Login Failed')
   try {
+    console.log('Login Failed')
     res.status(401).json({
       success: false,
       message: `Login Failed`
@@ -29,6 +29,7 @@ router.get('/login/success', (req, res) => {
       console.log(error)
     }
   } else {
+    console.log('Login Failed')
     try {
       res.status(401).json({
         success: false,

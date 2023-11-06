@@ -3,7 +3,7 @@ const passport = require('passport');
 const express = require('express'); // Import the Express.js framework
 const router = express.Router(); // Create an Express router
 
-const CLIENT_URL = 'http://localhost:5173/dashboard'
+const CLIENT_URL = 'https://smilesupply.net/dashboard'
 const LOGOUT_URL = 'https://www.smilesupply.net'
 router.get('/login/failed', (req, res) => {
   console.log('Login Failed')
@@ -17,8 +17,8 @@ router.get('/login/failed', (req, res) => {
   }
 })
 router.get('/login/success', (req, res) => {
-  console.log('Login Success')
   if (req.user) {
+    console.log('Login Success')
     try {
       res.status(200).json({
         success: true,

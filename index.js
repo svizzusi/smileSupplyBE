@@ -27,7 +27,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 const allowedOrigins = [
-  'https://www.smilesupply.net'
+  'https://www.smilesupply.net',
+  'http://localhost:5173',
+  'http://localhost:5174'
 ]
 
 app.use(cors({

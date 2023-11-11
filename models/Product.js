@@ -20,6 +20,7 @@ const ProductSchema = new mongoose.Schema({
     },
     frequency: {
         type: Number,
+        default: 30,
     },
     originalFrequency: {
         type: Number,

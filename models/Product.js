@@ -33,10 +33,10 @@ const ProductSchema = new mongoose.Schema({
         required: true,
     },
     currentWeek: {
-        data: { type: Object }
+        type: String,
       },
     reorderReminderWeek: {
-        data: { type: Object }
+        type: String,
       }
 })
 

@@ -20,7 +20,6 @@ const ProductSchema = new mongoose.Schema({
     },
     frequency: {
         type: Number,
-        default: 30,
     },
     originalFrequency: {
         type: Number,
@@ -33,13 +32,11 @@ const ProductSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    currentWeekt: {
+        type: String,
       },
-      updatedAt: {
-        type: Date,
-        default: Date.now,
+    reorderReminderWeek: {
+        type: String,
       }
 })
 

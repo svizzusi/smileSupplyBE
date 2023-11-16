@@ -39,7 +39,8 @@ module.exports = {
             name: req.body.name,
             price: req.body.price,
             quantity: req.body.quantity,
-            frequency: req.body.frequency
+            frequency: req.body.frequency,
+            reorderReminderWeek: req.body.reorderReminderWeek
         }) 
         .then(Product => res.json(Product)) // Convert data to JSON and send response
         .catch(err => {

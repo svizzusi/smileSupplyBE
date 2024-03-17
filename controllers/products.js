@@ -1,64 +1,68 @@
 const productSchema = require('../models/Product.js'); // Import the product schema
 
 module.exports = {
-    getProducts: (req, res) => {
+    getProducts: async (req, res) => {
         const userId = req.params.id; // Extract the userId parameter from the request
         console.log(userId);  
-        productSchema.find({ userId: userId }) // Retrieve all Data from collection
-        .then(Product => res.json(Product)) // Converts data to json and sends response
-        .catch(err => {
+        try {
+            await productSchema.find({ userId: userId }) // Retrieve all Data from collection
+            .then(Product => res.json(Product)) // Converts data to json and sends response
+        } catch (err) {
             res.json(err) //send error response as json
             console.log(err) //log the error
-        })
+            
+        }
     },
 
-    createProduct: (req, res) => {
-        productSchema.create(req.body) // Add Data to the collection
-        .then(Product => {
-            res.json(Product)
-        }) // Convert data to JSON and send response
-
-        .catch(err => {
+    createProduct: async (req, res) => {
+        try {
+            await productSchema.create(req.body) // Add Data to the collection
+            .then(Product => {
+                res.json(Product)
+            }) // Convert data to JSON and send response
+        } catch (err) {
             console.log(err)
-        })
+        }
     },
 
-    getProduct: (req, res) => {
+    getProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
-        productSchema.findById(id) // Retrieve data by its ID
-        .then(Product => res.json(Product)) // Convert data to JSON and send response
-        .catch(err => {
-            res.json(err)
+        try {
+            await productSchema.findById(id) // Retrieve data by its ID
+            .then(Product => res.json(Product)) // Convert data to JSON and send response
+            
+        } catch (err) {
             console.log(err)
-        })
+        }
     },
 
-    updateProduct: (req, res) => {
+    updateProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
-        productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
-            name: req.body.name,
-            price: req.body.price,
-            quantity: req.body.quantity,
-            frequency: req.body.frequency,
-            reorderReminderWeek: req.body.reorderReminderWeek
-        }) 
-        .then(Product => res.json(Product)) // Convert data to JSON and send response
-        .catch(err => {
-            res.json(err)
+        try {
+            await productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
+                name: req.body.name,
+                price: req.body.price,
+                quantity: req.body.quantity,
+                frequency: req.body.frequency,
+                reorderReminderWeek: req.body.reorderReminderWeek
+            }) 
+            .then(Product => res.json(Product)) // Convert data to JSON and send response
+            
+        } catch (err) {
             console.log(err)
-        })
+        }
     },
 
-    orderProduct: (req, res) => {
+    orderProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
-        productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
-            order: req.body.order
-        }) 
-        .then(Product => res.json(Product)) // Convert data to JSON and send response
-        .catch(err => {
-            res.json(err)
-            console.log(err)
-        })
+        try {
+            await productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
+                order: req.body.order
+            }) 
+            .then(Product => res.json(Product)) // Convert data to JSON and send response
+        } catch (err) {
+            console.log(err)      
+        }
     },
 
     resetFrequency: async (req, res) => {
@@ -88,13 +92,13 @@ module.exports = {
         }
         },
 
-    deleteProduct: (req, res) => {
+    deleteProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
-        productSchema.findByIdAndDelete(id) // Find and Delete data by its ID
-        .then(Product => res.json(Product)) // Convert data to JSON and send response
-        .catch(err => {
-            res.json(err)
+        try {
+            await productSchema.findByIdAndDelete(id) // Find and Delete data by its ID
+            .then(Product => res.json(Product)) // Convert data to JSON and send response  
+        } catch (err) {
             console.log(err)
-        })
+        }
     }
 }

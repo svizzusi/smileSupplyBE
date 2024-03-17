@@ -5,27 +5,21 @@ module.exports = {
     signup: async (req, res) => {
         try {
             const { name, email, password } = req.body; // Destructure user data from the request body
-    
             const existingUser = await userSchema.findOne({ email: email }); // Check if a user with the same email already exists in the database
-    
             if (existingUser) {
                 return res.json({
                     message: "User already exists, login instead",
                     success: false,
                 }); // Send a response indicating that the user already exists
             }
-    
             const hashPassword = await bcrypt.hash(password, 10); // Hash the user's password
-    
             const newUser = await userSchema.create({ name, email, password: hashPassword }); // Create a new user with hashed password
-    
             return res.json({
                 message: 'Account created successfully',
                 success: true,
                 userName: newUser.name, // Include the newly created user in the response
                 id: newUser._id
             });
-            
         } catch (err) {
             console.log(err);
             return res.status(500).json({
@@ -38,9 +32,7 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { email, password } = req.body; // Destructure user data from the request body
-    
             const user = await userSchema.findOne({ email: email }); // Find a user with the given email
-    
             if (user) {
                 const isPasswordValid = await bcrypt.compare(password, user.password); // Compare the provided password with the hashed password in the database
                 if (isPasswordValid) {

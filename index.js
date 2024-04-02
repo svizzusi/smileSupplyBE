@@ -55,6 +55,7 @@ const allowedOrigins = [
   'https://www.smilesupply.net',
   'https://smilesupply.net',
   'https://smile-supply-fe.vercel.app',
+  'https://odd-gold-anemone-cap.cyclic.app/',
   'http://localhost:5173',
   'http://localhost:5174'
 ];

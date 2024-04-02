@@ -26,30 +26,51 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+// const allowedOrigins = [
+//   'https://www.smilesupply.net',
+//   'https://smilesupply.net',
+//   'http://localhost:5173',
+//   'http://localhost:5174'
+// ]
+
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Origin is not specified'))
+//     }
+//   },
+//   methods: [
+//     'GET',
+//     'PUT',
+//     'POST',
+//     'DELETE',
+//     'PATCH'
+//   ],
+//   credentials: true
+// }));
+
 const allowedOrigins = [
   'https://www.smilesupply.net',
   'https://smilesupply.net',
   'http://localhost:5173',
   'http://localhost:5174'
-]
+];
 
-app.use(cors({
+const corsOptions = {
   origin: function(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true)
+      callback(null, true);
     } else {
-      callback(new Error('Origin is not specified'))
+      callback(new Error('Origin is not allowed by CORS'));
     }
   },
-  methods: [
-    'GET',
-    'PUT',
-    'POST',
-    'DELETE',
-    'PATCH'
-  ],
-  credentials: true
-}));
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 

@@ -1,4 +1,3 @@
-const passportSetup = require('./passportStrategy/passport')
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');

@@ -23,8 +23,7 @@ module.exports = {
                 res.json(Product)
             }) // Convert data to JSON and send response
         } catch (err) {
-            res.json(err) //send error response as json
-            console.log(err)
+            handleErrorResponse(res, err)
         }
     },
 
@@ -34,8 +33,7 @@ module.exports = {
             await productSchema.findById(id) // Retrieve data by its ID
             .then(Product => res.json(Product)) // Convert data to JSON and send response
         } catch (err) {
-            res.json(err) //send error response as json
-            console.log(err)
+            handleErrorResponse(res, err)
         }
     },
 
@@ -51,8 +49,7 @@ module.exports = {
             }) 
             .then(Product => res.json(Product)) // Convert data to JSON and send response
         } catch (err) {
-            res.json(err) //send error response as json
-            console.log(err)
+            handleErrorResponse(res, err)
         }
     },
 
@@ -64,8 +61,7 @@ module.exports = {
             }) 
             .then(Product => res.json(Product)) // Convert data to JSON and send response
         } catch (err) {
-            res.json(err) //send error response as json
-            console.log(err)      
+            handleErrorResponse(res, err)
         }
     },
 
@@ -93,7 +89,7 @@ module.exports = {
             await productSchema.findByIdAndDelete(id) // Find and Delete data by its ID
             .then(Product => res.json(Product)) // Convert data to JSON and send response  
         } catch (err) {
-            console.log(err)
+            handleErrorResponse(res, err)
         }
     }
 }

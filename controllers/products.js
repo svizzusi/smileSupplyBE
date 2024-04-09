@@ -28,8 +28,8 @@ module.exports = {
     getProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
         try {
-            await productSchema.findById(id) // Retrieve data by its ID
-            .then(Product => res.json(Product)) // Convert data to JSON and send response
+            const Product = await productSchema.findById(id) // Retrieve data by its ID
+            res.status(200).json(Product) // Sends response
         } catch (err) {
             handleErrorResponse(res, err)
         }

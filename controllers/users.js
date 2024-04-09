@@ -1,6 +1,15 @@
 const userSchema = require('../models/User.js'); // Import the user schema
 const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 
+const handleErrorResponse = (res, error) => {
+    console.error(error);
+    return res.status(500).json({
+        message: 'Internal Server Error',
+        error,
+        success: false,
+    });
+};
+
 module.exports = {
     signup: async (req, res) => {
         try {
@@ -21,12 +30,7 @@ module.exports = {
                 id: newUser._id
             });
         } catch (err) {
-            console.log(err);
-            return res.status(500).json({
-                message: 'Internal Server Error',
-                error: err,
-                success: false,
-            }); // Send an error response if user creation fails
+            return handleErrorResponse(res, err);
         }
     },
     login: async (req, res) => {
@@ -55,12 +59,7 @@ module.exports = {
                 }); // Send a response indicating that the user does not exist
             }
         } catch (err) {
-            console.log(err);
-            return res.status(500).json({
-                message: 'Internal Server Error',
-                error: err,
-                success: false,
-            }); // Send an error response if an error occurs during the login process
+            return handleErrorResponse(res, err);
         }
     }
 }

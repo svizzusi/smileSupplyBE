@@ -66,13 +66,13 @@ module.exports = {
     resetFrequency: async (req, res) => {
         const id = req.params.id;
         try {
-            const product = await productSchema.findById(id); // Find the product by ID
-            if (!product) {
+            const Product = await productSchema.findById(id); // Find the product by ID
+            if (!Product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
-            product.frequency = product.originalFrequency; // Set the 'frequency' to the 'originalFrequency' value from the schema
-            product.order = false; // Set 'order' to false, if needed
-            const updatedProduct = await product.save(); // Save the updated product
+            Product.frequency = Product.originalFrequency; // Set the 'frequency' to the 'originalFrequency' value from the schema
+            Product.order = false; // Set 'order' to false, if needed
+            const updatedProduct = await Product.save(); // Save the updated product
             res.json(updatedProduct);
         } catch (error) {
             console.error(error);

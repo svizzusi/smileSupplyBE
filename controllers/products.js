@@ -18,10 +18,8 @@ module.exports = {
 
     createProduct: async (req, res) => {
         try {
-            await productSchema.create(req.body) // Add Data to the collection
-            .then(Product => {
-                res.json(Product)
-            }) // Convert data to JSON and send response
+            const Product = await productSchema.create(req.body) // Add Data to the collection
+            res.status(200).json(Product) // Sends response
         } catch (err) {
             handleErrorResponse(res, err)
         }

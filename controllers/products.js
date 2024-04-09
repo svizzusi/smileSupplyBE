@@ -54,10 +54,10 @@ module.exports = {
     orderProduct: async (req, res) => {
         const id = req.params.id // Extract the ID parameter from the request
         try {
-            await productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
+            const Product = await productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
                 order: req.body.order
             }) 
-            .then(Product => res.json(Product)) // Convert data to JSON and send response
+            res.status(200).json(Product) // Sends response
         } catch (err) {
             handleErrorResponse(res, err)
         }

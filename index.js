@@ -58,10 +58,7 @@ const connectDB = async () => {
       throw new Error('DB_STRING environment variable is not defined.');
     }
 
-    await mongoose.connect(process.env.DB_STRING, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.DB_STRING);
     console.log('Connected to MongoDB');
 
     // Start the server after the database connection is established
@@ -81,5 +78,3 @@ connectDB();
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/auth', authRoutes);
-
-

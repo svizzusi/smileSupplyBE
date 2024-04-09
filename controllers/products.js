@@ -1,15 +1,18 @@
 const productSchema = require('../models/Product.js'); // Import the product schema
 
+const handleErrorResponse = (res, err) => {
+    res.status(500).json(err) //send error response as json
+            console.error(err) //log the error
+};
+
 module.exports = {
     getProducts: async (req, res) => {
         const userId = req.params.id; // Extract the userId parameter from the request
         try {
-            await productSchema.find({ userId: userId }) // Retrieve all Data from collection
-            .then(Product => res.json(Product)) // Converts data to json and sends response
+            const Product = await productSchema.find({ userId: userId }) // Retrieve all Data from collection
+            res.status(200).json(Product) // Sends response
         } catch (err) {
-            res.json(err) //send error response as json
-            console.log(err) //log the error
-            
+            handleErrorResponse(res, err)
         }
     },
 

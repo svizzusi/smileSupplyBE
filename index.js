@@ -82,10 +82,4 @@ app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/auth', authRoutes);
 
-// Global error handler middleware
-app.use((err, req, res, next) => {
-  console.error('Global error handler:', err);
-  res.status(500).json({ error: 'Internal server error' });
-});
 
-// Other middleware, routes, and error handlers can be added as needed.

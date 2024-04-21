@@ -6,6 +6,7 @@ require('dotenv').config({ path: './config/.env' });
 const passport = require('passport');
 const session = require('express-session');
 
+const patientRoutes = require('./routes/Patients')
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const authRoutes = require('./routes/auth');
@@ -78,3 +79,4 @@ connectDB();
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/auth', authRoutes);
+app.use('/patients', patientRoutes)

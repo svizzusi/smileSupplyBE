@@ -1,45 +1,42 @@
 const mongoose = require('mongoose')
 
-// Define a schema for the "User" collection
-const ProductSchema = new mongoose.Schema({
-    name: {
+// Define a schema for the "Patients" collection
+const PatientSchema = new mongoose.Schema({
+    lastName: {
         type: String,
         required: true,
     },
-    productId: {
+    firstName: {
         type: String,
         required: true,
     },
-    price: {
-        type: Number,
+    phone: {
+        type: String,
         required: true,
     },
-    quantity: {
-        type: Number,
+    email: {
+        type: String,
         required: true,
     },
     frequency: {
         type: Number,
+        required: true,
     },
     originalFrequency: {
         type: Number,
     },
-    order: {
-        type: Boolean,
+    currentWeek: {
+        type: String,
+    },
+    patientReminderWeek: {
+        type: String,
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users",
         required: true,
     },
-    currentWeek: {
-        type: String,
-      },
-    reorderReminderWeek: {
-        type: String,
-      }
 })
 
-
 // Export the model based on the defined schema
-module.exports = mongoose.model('Product', ProductSchema)
+module.exports = mongoose.model('patients', PatientSchema)

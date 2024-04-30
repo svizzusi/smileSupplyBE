@@ -6,7 +6,7 @@ require('dotenv').config({ path: './config/.env' });
 const passport = require('passport');
 const session = require('express-session');
 
-const patientRoutes = require('./routes/Patients')
+const patientRoutes = require('./routes/patients')
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const authRoutes = require('./routes/auth');

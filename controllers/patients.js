@@ -16,7 +16,7 @@ module.exports = {
         }
     },
     
-    createPatient: async (req, res) => {
+    addPatient: async (req, res) => {
         console.log(req)
         console.log(req.body)
         try {

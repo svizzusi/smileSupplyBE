@@ -6,7 +6,7 @@ const patientsController = require('../controllers/patients')
 router.get('/getPatients/:id', patientsController.getPatients)
 
 // Route for creating a patient
-router.post('/createPatient', patientsController.createPatient)
+router.post('/addPatient', patientsController.addPatient)
 
 // Express route to the root route for fetching users patients by the patient id
 router.get('/getPatient/:id', patientsController.getPatient)

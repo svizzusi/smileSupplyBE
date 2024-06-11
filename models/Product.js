@@ -30,7 +30,6 @@ const ProductSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users",
-        required: true,
     },
     currentWeek: {
         type: String,

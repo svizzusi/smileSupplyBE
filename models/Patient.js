@@ -4,23 +4,18 @@ const mongoose = require('mongoose')
 const PatientSchema = new mongoose.Schema({
     lastName: {
         type: String,
-        required: true,
     },
     firstName: {
         type: String,
-        required: true,
     },
     phone: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
-        required: true,
     },
     frequency: {
         type: Number,
-        required: true,
     },
     originalFrequency: {
         type: Number,
@@ -34,7 +29,6 @@ const PatientSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users",
-        required: true,
     },
 })
 

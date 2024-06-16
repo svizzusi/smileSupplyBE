@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
@@ -13,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        required: true,
     },
     savedProducts: {
         type: mongoose.Schema.Types.ObjectId,

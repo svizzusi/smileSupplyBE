@@ -43,19 +43,8 @@ module.exports = {
                 price: req.body.price,
                 quantity: req.body.quantity,
                 frequency: req.body.frequency,
+                order: req.body.order,
                 reorderReminderWeek: req.body.reorderReminderWeek
-            }) 
-            res.status(200).json(Product) // Sends response
-        } catch (err) {
-            handleErrorResponse(res, err)
-        }
-    },
-
-    orderProduct: async (req, res) => {
-        const id = req.params.id // Extract the ID parameter from the request
-        try {
-            const Product = await productSchema.findByIdAndUpdate(id, { // Find and update data by its ID
-                order: req.body.order
             }) 
             res.status(200).json(Product) // Sends response
         } catch (err) {

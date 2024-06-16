@@ -15,9 +15,6 @@ router.get('/getProduct/:id', productsController.getProduct)
 // Express route for updating a product by its ID(From MongoDB)
 router.put('/updateProduct/:id', productsController.updateProduct)
 
-// Route for updating a product to order form
-router.put('/orderProduct/:id', productsController.orderProduct);
-
 // Route for resetting the frequency of a product back to it's original frequency
 router.put('/resetFrequency/:id', productsController.resetFrequency);
 
